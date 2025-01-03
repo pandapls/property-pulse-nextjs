@@ -13,7 +13,7 @@ type SearchParams = {
 };
 
 type Props = {
-    searchParams: SearchParams;
+    searchParams: Promise<SearchParams>;
 };
 interface PropertyQuery {
     $or: Array<{
@@ -29,7 +29,7 @@ interface PropertyQuery {
 const SearchResultPage = async ({ searchParams }: Props) => {
     await connectDB();
 
-    const { location, propertyType } = await Promise.resolve(searchParams)
+    const { location, propertyType } = await Promise.resolve(await searchParams)
     const locationPattern = new RegExp(location || '', 'i');
     console.log(locationPattern, 'locationPattern')
     const query: PropertyQuery = {

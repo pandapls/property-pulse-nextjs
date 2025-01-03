@@ -5,15 +5,16 @@ import connectDB from '@/config/database';
 import Property, { PropertyType } from '@/models/Property';
 
 type props = {
-    searchParams: {
-        page?: number;
-        pageSize?: number;
-
-    };
+    searchParams: Promise<Params>;
 }
-export default async function Properties({ searchParams: { page = 1, pageSize = 2 } }: props) {
+type Params = {
+    page?: number;
+    pageSize?: number;
+}
+export default async function Properties({ searchParams }: props) {
 
     await connectDB()
+    const { page = 1, pageSize = 10 } = await searchParams;
     const skip = (page - 1) * pageSize;
     const total = await Property.countDocuments({});
     const properties = (await Property.find({}).skip(skip).limit(pageSize).lean()) as unknown as PropertyType[];

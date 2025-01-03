@@ -3,10 +3,16 @@ import connectDB from '@/config/database';
 import Property, { PropertyType } from '@/models/Property';
 import { convertToSerializableObject } from '@/utils/converToObject';
 import React from 'react'
-
-const PropertyEditPage = async ({ params }: { params: { id: string } }) => {
+type PropertyEditPageProps = {
+    params: Promise<PropertyPageParams>
+}
+type PropertyPageParams = {
+    id: string
+}
+const PropertyEditPage = async ({ params }: PropertyEditPageProps) => {
     await connectDB();
-    const propertyDoc = await Property.findById(params.id).lean() as unknown as PropertyType;;
+    const { id } = await params;
+    const propertyDoc = await Property.findById(id).lean() as unknown as PropertyType;;
     const property = convertToSerializableObject(propertyDoc);
     if (!property) {
         return <h1 className='text-center text-2xl font-bold mt-10'>Property Not Found</h1>
