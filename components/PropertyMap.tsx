@@ -32,10 +32,8 @@ const PropertyMap = ({ property }: { property: PropertyType }) => {
         const getCoordinates = async () => {
             try {
                 const address = `${property.location.street} ${property.location.city} ${property.location.zipCode}`;
-                console.log(address, '----')
                 const response = await fromAddress(address);
 
-                console.log(response, 'response')
                 if (response.results.length === 0) {
                     setGeocodeError(true);
                     setLoading(false);
@@ -53,7 +51,6 @@ const PropertyMap = ({ property }: { property: PropertyType }) => {
                 console.log('error', error)
                 setGeocodeError(true);
             } finally {
-                console.log('finally')
                 setLoading(false);
             }
         };

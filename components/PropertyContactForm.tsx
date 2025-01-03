@@ -1,5 +1,5 @@
 'use client';
-import addMessage, { AddMessageFormState } from '@/app/actions/addMessage';
+import addMessage from '@/app/actions/addMessage';
 import { PropertyType } from '@/models/Property'
 import { useSession } from 'next-auth/react';
 import React, { useActionState, useEffect } from 'react'
