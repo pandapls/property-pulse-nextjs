@@ -9,8 +9,8 @@ export interface AddMessageFormState {
 	message?: string;
 	error?: string;
 }
-
 const addMessage = async (
+	// @typescript-eslint/no-unused-vars
 	prevState: AddMessageFormState,
 	formData: FormData
 ): Promise<AddMessageFormState> => {

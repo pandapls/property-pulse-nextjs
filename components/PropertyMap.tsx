@@ -7,13 +7,11 @@ import Map, { Marker } from 'react-map-gl';
 import pin from '@/assets/images/pin.svg';
 import Image from 'next/image'
 import 'mapbox-gl/dist/mapbox-gl.css';
-// 定义 mapLib 类型
-type MapLibrary = Promise<typeof import('mapbox-gl')>;
 
 const PropertyMap = ({ property }: { property: PropertyType }) => {
     const [lat, setLat] = useState<number | null>(null);
     const [lng, setLng] = useState<number | null>(null);
-    const [viewport, setViewport] = useState({
+    const [, setViewport] = useState({
         latitude: 0,
         longitude: 0,
         zoom: 12,
@@ -64,10 +62,6 @@ const PropertyMap = ({ property }: { property: PropertyType }) => {
 
     if (loading) return <Spinner />;
     if (geocodeError) return <div className='text-xxl'>Not Location data found</div>;
-
-    // 显式声明 mapLib 的类型
-    const mapLib: MapLibrary = import('mapbox-gl');
-
     return (
         <div>
             {!loading && !geocodeError && lat && lng && (

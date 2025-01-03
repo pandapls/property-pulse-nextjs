@@ -32,7 +32,7 @@ const SearchResultPage = async ({ searchParams }: Props) => {
     const { location, propertyType } = await Promise.resolve(searchParams)
     const locationPattern = new RegExp(location || '', 'i');
     console.log(locationPattern, 'locationPattern')
-    let query: PropertyQuery = {
+    const query: PropertyQuery = {
         $or: [
             { name: locationPattern },
             { description: locationPattern },

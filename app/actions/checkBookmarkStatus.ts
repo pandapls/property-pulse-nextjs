@@ -19,7 +19,7 @@ async function checkBookmarkStatus(propertyId: string) {
 		throw new Error('User not found');
 	}
 
-	let isBookmarked = (user.bookmarks as Array<string>).includes(propertyId);
+	const isBookmarked = (user.bookmarks as Array<string>).includes(propertyId);
 
 	return {
 		isBookmarked,

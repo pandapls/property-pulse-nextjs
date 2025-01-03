@@ -1,7 +1,6 @@
 'use client';
 
 import { PropertyType } from "@/models/Property"
-import { FaShare } from "react-icons/fa"
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton, EmailShareButton, FacebookIcon, TwitterIcon, WhatsappIcon, EmailIcon } from 'react-share';
 const ShareButton = ({ property }: { property: PropertyType }) => {
     const shareUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/properties/${property._id}`
